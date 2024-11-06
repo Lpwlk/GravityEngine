@@ -1,0 +1,49 @@
+# def solve_kepler(M, e, tol=1e-6):
+#     E = M  # initial guess
+#     while True:
+#         E_new = E - (E - e * np.sin(E) - M) / (1 - e * np.cos(E))
+#         if np.abs(E_new - E) < tol:
+#             break
+#         E = E_new
+#     return E
+
+# def orbital_vects(a, e, i, Ω, ω, M):
+#     # i, Ω, ω = deg_to_rad(i), deg_to_rad(Ω), deg_to_rad(ω)
+
+#     E = solve_kepler(M, e)
+#     x_prime = a * (np.cos(E) - e)
+#     y_prime = a * np.sqrt(1 - e**2) * np.sin(E)
+    
+#     r = a * (1 - e * np.cos(E))
+#     v = np.sqrt(6.67430e-11 * 1.989e30 * (2/r - 1/a))
+#     vx_prime = -a * np.sin(E) * v / r
+#     vy_prime = a * np.sqrt(1 - e**2) * np.cos(E) * v / r
+    
+#     x = (np.cos(Ω) * np.cos(ω) - np.sin(Ω) * np.sin(ω) * np.cos(i)) * x_prime - (np.cos(Ω) * np.sin(ω) + np.sin(Ω) * np.cos(ω) * np.cos(i)) * y_prime
+#     y = (np.sin(Ω) * np.cos(ω) + np.cos(Ω) * np.sin(ω) * np.cos(i)) * x_prime + (np.cos(Ω) * np.cos(ω) * np.cos(i) - np.sin(Ω) * np.sin(ω)) * y_prime
+#     z = (np.sin(ω) * np.sin(i)) * x_prime + (np.cos(ω) * np.sin(i)) * y_prime
+    
+#     vx = (np.cos(Ω) * np.cos(ω) - np.sin(Ω) * np.sin(ω) * np.cos(i)) * vx_prime - (np.cos(Ω) * np.sin(ω) + np.sin(Ω) * np.cos(ω) * np.cos(i)) * vy_prime
+#     vy = (np.sin(Ω) * np.cos(ω) + np.cos(Ω) * np.sin(ω) * np.cos(i)) * vx_prime + (np.sin(Ω) * np.sin(ω) - np.cos(Ω) * np.cos(ω) * np.cos(i)) * vy_prime
+#     vz = (np.sin(ω) * np.sin(i)) * vx_prime + (np.cos(ω) * np.sin(i)) * vy_prime
+    
+#     return x, y, z, vx, vy, vz
+
+# planets = {
+#     'Mercure': (57909050000.0, 0.2056, 0.12217304763960307, 0.8435405574602882, 0.5083130489735752, 3.050180955722273, 3.3011e23),
+#     'Vénus': (108208000000.0, 0.0067, 0.05924840978584523, 1.338318470584594, 0.9579463232228038, 0.8744390440707205, 4.8675e24),
+#     'Terre': (149597870700.0, 0.0167, 0.0, 0.0, 1.7967674219289658, 6.2400601272620595, 5.9722e24),
+#     'Mars': (227939200000.0, 0.0934, 0.03223105403475872, 0.865308761333662, 5.000600733244472, 0.33730931255743274, 6.4171e23),
+#     'Jupiter': (778340000000.0, 0.0484, 0.02277654673853262, 1.7543639360817477, 4.779456920330047, 0.3497366076057422, 1.8982e27),
+#     'Saturne': (1426666417000.0, 0.0542, 0.04336319683843423, 1.984701282971513, 5.92345656935062, 5.534846712995912, 5.6834e26),
+#     'Uranus': (2870658186000.0, 0.0472, 0.013492065985132364, 1.295890454383124, 1.6925479667872955, 2.4825302016595567, 8.6810e25),
+#     'Neptune': (4498396441000.0, 0.0086, 0.030869058978210067, 2.2986165379180734, 4.821803125773331, 4.472379767850083, 1.0241e26)
+# }
+
+# solar_system = [body(location = vect(0, 0, 0), velocity = vect(0, 0, 0), mass = 1.989e30, name = 'Sun')]
+# for planet, elements in planets.items():
+#     a, e, i, Ω, ω, M, m = elements
+#     x, y, z, vx, vy, vz = orbital_vects(a, e, i, Ω, ω, M)
+#     solar_system.append(body(location = vect(x, y, z), velocity = vect(vx, vy, vz), mass = m, name = planet))
+    
+
